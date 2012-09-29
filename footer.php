@@ -9,8 +9,6 @@
  */
 ?>
 
-          <hr class="short">
-
 
 	         <div class="row-fluid moreBtn">
             <span class="span8"><!-- Ajax Load More -->
@@ -52,28 +50,35 @@
 
     <!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Placed at the end of the document so the pages load faster
     <script src="<?php echo template_url ; ?>/assets/js/jquery.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-transition.js"></script>
+
     <script src="<?php echo template_url ; ?>/assets/js/bootstrap-alert.js"></script>
     <script src="<?php echo template_url ; ?>/assets/js/bootstrap-modal.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-dropdown.js"></script>
+
     <script src="<?php echo template_url ; ?>/assets/js/bootstrap-scrollspy.js"></script>
+
+    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-collapse.js"></script>
+    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-carousel.js"></script>
+    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-typeahead.js"></script>
+    -->
+    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-transition.js"></script>
+
+    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-dropdown.js"></script>
+
     <script src="<?php echo template_url ; ?>/assets/js/bootstrap-tab.js"></script>
     <script src="<?php echo template_url ; ?>/assets/js/bootstrap-tooltip.js"></script>
     <script src="<?php echo template_url ; ?>/assets/js/bootstrap-popover.js"></script>
     <script src="<?php echo template_url ; ?>/assets/js/bootstrap-button.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-collapse.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-carousel.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-typeahead.js"></script>
+
 
   <script type="text/javascript">
-    $(document).ready(function () {
-      $('body').tooltip({
+    jQuery(document).ready(function () {
+      jQuery('body').tooltip({
           selector:'[rel^=tooltip]',
           placement:'top'
       })
-      $("a[rel=popover]")
+      jQuery("a[rel=popover]")
         .popover({
             offset: 10,
             trigger: 'hover',

@@ -1,7 +1,7 @@
 
     <!-- Le styles -->
-    <link href="<?php echo template_url ; ?>/assets/css/cox.css" rel="stylesheet">
-    <link href="<?php echo template_url ; ?>/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?php echo template_url ; ?>/css/cox.css" rel="stylesheet">
+    <link href="<?php echo template_url ; ?>/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

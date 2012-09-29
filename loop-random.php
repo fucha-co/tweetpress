@@ -16,6 +16,8 @@
                   <span class="glyph social">e</span> <?php echo mtm_time_ago(); ?>
                     <span class="spacer"></span><span class="hidden-desktop"><br></span>
                   <span class="glyph general">7</span> <?php the_time('g:ia M j, Y') ?>
+                    <span class="spacer"></span><span class="hidden-desktop"><br></span>
+                  <span class="glyph general">=</span>
                 </p>
             </div>
           </div>

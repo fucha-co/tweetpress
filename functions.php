@@ -1,6 +1,6 @@
 <?php
 
-include_once( get_stylesheet_directory() . '/ozh-tweet-archiver/ozh-ta.php');
+//include_once( get_stylesheet_directory() . '/ozh-tweet-archiver/ozh-ta.php');
 
 define('template_url', '/wp-content/themes/TweetPress/');
 
@@ -30,13 +30,13 @@ add_action( 'mtm_tweet_link', 'mtm_tweet_link', 10, 0 );
 remove_action( 'ozh_ta_in_reply_to_tweet', 'ozh_ta_in_reply_to_tweet', 10, 0 );
 
 				// Template tag: "in reply to Ozh"
-				function mtm_in_reply_to_tweet( $text = '<span class="glyph general">[</span> a reply to %name%', $echo = true ) {
+				function mtm_in_reply_to_tweet( $text = '%name%', $echo = true ) {
 					$tweet = ozh_ta_reply_to_tweet( false );
 					$name = ozh_ta_reply_to_name( false );
 					if( $tweet && $name ) {
 						$text = str_replace( '%name%', $name, $text );
 						$profileImg = sprintf( "<img src='http://avatars.io/twitter/%s?size=small' alt='#' class='img-polaroid pull-left'/> <div class=''>%s is from Australia</div>", $name, $name );
-						$link = sprintf( '<a href="#" class="reply" rel="popover" data-content="%s" data-original-title="@%s">%s</a> <span class="spacer">&nbsp;</span><span class="hidden-desktop"><br></span>', $profileImg, $name, $text );
+						$link = sprintf( '<span class="glyph general">[</span> a reply to <a href="#" class="reply" rel="popover" data-content="%s" data-original-title="@%s">%s</a> <span class="spacer">&nbsp;</span><span class="hidden-desktop"><br></span>', $profileImg, $name, $text );
 						$link = apply_filters( 'ozh_ta_in_reply_to_tweet_link', $link );
 						if( $echo )
 							echo $link;
@@ -237,17 +237,17 @@ add_action( 'after_setup_theme', '_s_setup' );
  *
  * @since _s 1.0
  */
-function _s_widgets_init() {
-	register_sidebar( array(
-		'name' => __( 'Sidebar', '_s' ),
-		'id' => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h1 class="widget-title">',
-		'after_title' => '</h1>',
-	) );
-}
-add_action( 'widgets_init', '_s_widgets_init' );
+//function _s_widgets_init() {
+//	register_sidebar( array(
+//		'name' => __( 'Sidebar', '_s' ),
+//		'id' => 'sidebar-1',
+//		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+//		'after_widget' => "</aside>",
+//		'before_title' => '<h1 class="widget-title">',
+//		'after_title' => '</h1>',
+//	) );
+//}
+//add_action( 'widgets_init', '_s_widgets_init' );
 
 /**
  * Enqueue scripts and styles
