@@ -3,6 +3,17 @@
 //include_once( get_stylesheet_directory() . '/ozh-tweet-archiver/ozh-ta.php');
 
 define('template_url', '/wp-content/themes/TweetPress/');
+define('stylesheet_url', '/wp-content/themes/TweetPress/style.css');
+
+define('tp_URL', get_option('home'));
+define('tp_NAME', get_bloginfo('domain'));//get_current_site_name('get_current_site'));
+define('tp_DESC', get_bloginfo('description'));
+define('tp_TEMPURL', get_bloginfo('template_url'));
+
+function tp_blog_path() {
+$url = get_option('home');
+echo parse_url($url, PHP_URL_PATH);
+}
 
 add_filter( 'show_admin_bar', '__return_false' );
 
@@ -11,6 +22,37 @@ remove_filter( 'the_content', 'wpautop' );
 //remove_filter('the_excerpt', 'wptexturize');
 //remove_filter('comment_text', 'wptexturize');
 //remove_filter('the_title', 'wptexturize');
+
+
+function tp_linkuser($content) {
+    $pattern = '/@([a-zA-Z0-9_]+)*/'; //'/(\W)@(\w+)/',
+    $name = '$1';
+    $atname = '@$1';
+    //$Name = ozh_ta_reply_to_name( false );
+    $profileImg = sprintf( "<img src='http://avatars.io/twitter/%s?size=small' alt='#' class='img-polaroid pull-left'/> <div class=''>$1 is from Australia</div>", $name, $name );
+    $link = sprintf( '<a href="//twitter.com/$1" class="username" rel="popover" data-original-title="$1">@$1</a><div id="username_popover" style="display: none">
+        <img src="http://avatars.io/twitter/$1?size=small" alt="#" class="img-polaroid pull-left"/>
+        <div class="">
+          <script>Chirp({
+              user:"$1",
+              max:1,
+              templates: {
+                base: \'<div class="chirp2">{{tweets}}</div>\',
+                tweet: \'<p><strong>{{user.statuses_count}} Tweets<br/>{{user.followers_count}} Followers <br/>{{user.friends_count}} Following</strong><br>{{user.description}}<br><strong>{{user.location}}</strong></p>\'
+              }
+            })</script>
+          </div>
+      </div>');
+				$replace = $link;
+
+    $content = preg_replace($pattern, $replace, $content);
+    return $content;
+}
+add_filter( 'the_content', 'tp_linkuser', 10);
+
+
+
+/*** Ozh Twitter Archiver _________________________________________________________________________ ***/
 
 
 remove_action( 'ozh_ta_tweet_link', 'ozh_ta_tweet_link', 10, 0 );
@@ -36,7 +78,7 @@ remove_action( 'ozh_ta_in_reply_to_tweet', 'ozh_ta_in_reply_to_tweet', 10, 0 );
 					if( $tweet && $name ) {
 						$text = str_replace( '%name%', $name, $text );
 						$profileImg = sprintf( "<img src='http://avatars.io/twitter/%s?size=small' alt='#' class='img-polaroid pull-left'/> <div class=''>%s is from Australia</div>", $name, $name );
-						$link = sprintf( '<span class="glyph general">[</span> a reply to <a href="#" class="reply" rel="popover" data-content="%s" data-original-title="@%s">%s</a> <span class="spacer">&nbsp;</span><span class="hidden-desktop"><br></span>', $profileImg, $name, $text );
+						$link = sprintf( '<span class="glyph general">[</span> a reply to <a href="//twitter.com/%s" class="stats" rel="popover" data-content="%s" data-original-title="%s">%s</a> <span class="spacer">&nbsp;</span><span class="hidden-desktop"><br></span>', $name, $profileImg, $name, $text );
 						$link = apply_filters( 'ozh_ta_in_reply_to_tweet_link', $link );
 						if( $echo )
 							echo $link;
@@ -45,6 +87,7 @@ remove_action( 'ozh_ta_in_reply_to_tweet', 'ozh_ta_in_reply_to_tweet', 10, 0 );
 				}
 
 add_action( 'mtm_in_reply_to_tweet', 'mtm_in_reply_to_tweet', 10, 0 );
+
 
 
 // Time Ago (Relative Time)

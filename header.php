@@ -8,7 +8,9 @@
  * @package _s
  * @since _s 1.0
  */
-?><!DOCTYPE html>
+?>
+<!-- TweetPress header.php -->
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
@@ -37,16 +39,18 @@
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-<?php get_template_part ('part-head') ; ?>
+<?php get_template_part ('part/head') ; ?>
 
 <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 
-	<?php get_template_part ('part-nav') ; ?>
+	<?php get_template_part ('part/nav') ; ?>
 
 	<div class="container">
 	      <div class="row-fluid">
 
-												<?php get_template_part ('part-sidebar') ; ?>
+	      					<?php if ( ! is_front_page() || ! is_page('signup') ) {?>
+													 <?php get_template_part ('part/sidebar') ; ?>
+													<?php }?>

@@ -1,0 +1,35 @@
+Direct Sale
+  1 year  = $12 / $12
+  2 years = $20 / $10
+  3 years = $24 / $ 8
+
+PayPal Fees = 2.9% + $0.30
+  1 year  = $12 - $0.648  = $
+  2 years = $20 - $0.88   = $
+  3 years = $24 / $0.996  = $
+
+Affiliate Sale
+  1 year  = $12 - $5 (41%) = $7  ($7)
+  2 years = $20 - $6 (35%) = $14 ($7)
+  3 years = $24 - $7 (29%) = $17 ($5.6)
+
+
+
+lowercase
+User input = thelonecuber
+writes blog[path] =  sitename.com/thelonecuber
+writes blogtitle = thelonecuber
+
+CamelCase
+User input = TheLoneCuber
+writes blog[path] =  sitename.com/thelonecuber
+writes blogtitle = TheLoneCuber
+
+_underscore
+User input = the_lone_cuber
+writes blog[path] =  sitename.com/the_lone_cuber
+writes blogtitle = the_lone_cuber
+
+User input = The_Lone_Cuber
+writes blog[path] =  sitename.com/the_lone_cuber
+writes blogtitle = The_Lone_Cuber

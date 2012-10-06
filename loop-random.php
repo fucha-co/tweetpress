@@ -17,7 +17,7 @@
                     <span class="spacer"></span><span class="hidden-desktop"><br></span>
                   <span class="glyph general">7</span> <?php the_time('g:ia M j, Y') ?>
                     <span class="spacer"></span><span class="hidden-desktop"><br></span>
-                  <span class="glyph general">=</span>
+                  <a href="#" class="stats" rel="popover" data-original-title="Extra Tweet Stats"><span class="glyph general">=</span></a>
                 </p>
             </div>
           </div>

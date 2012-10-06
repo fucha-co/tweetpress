@@ -51,25 +51,16 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster
-    <script src="<?php echo template_url ; ?>/assets/js/jquery.js"></script>
 
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-alert.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-modal.js"></script>
-
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-scrollspy.js"></script>
-
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-collapse.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-carousel.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-typeahead.js"></script>
     -->
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-transition.js"></script>
+    <script src="<?php bloginfo('stylesheet_directory'); ?>/assets/js/bootstrap-transition.js"></script>
 
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-dropdown.js"></script>
+    <script src="<?php bloginfo('stylesheet_directory'); ?>/assets/js/bootstrap-dropdown.js"></script>
 
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-tab.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-tooltip.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-popover.js"></script>
-    <script src="<?php echo template_url ; ?>/assets/js/bootstrap-button.js"></script>
+    <script src="<?php bloginfo('stylesheet_directory'); ?>/assets/js/bootstrap-tab.js"></script>
+    <script src="<?php bloginfo('stylesheet_directory'); ?>/assets/js/bootstrap-tooltip.js"></script>
+    <script src="<?php bloginfo('stylesheet_directory'); ?>/assets/js/bootstrap-popover.js"></script>
+    <script src="<?php bloginfo('stylesheet_directory'); ?>/assets/js/bootstrap-button.js"></script>
 
 
   <script type="text/javascript">
@@ -78,17 +69,77 @@
           selector:'[rel^=tooltip]',
           placement:'top'
       })
-      jQuery("a[rel=popover]")
+      jQuery("a.username")
         .popover({
             offset: 10,
             trigger: 'hover',
-            placement: 'bottom'
+            placement: 'bottom',
+            html : true,
+            content: function() {
+            return jQuery('#username_popover').html();
+            }
+        })
+        .click(function(e) {
+            e.preventDefault()
+        })
+      jQuery("a.reply")
+        .popover({
+            offset: 10,
+            trigger: 'hover',
+            placement: 'bottom',
+            html : true,
+            content: function() {
+            return jQuery('#username_popover').html();
+            }
+        })
+        .click(function(e) {
+            e.preventDefault()
+        })
+      jQuery("a.stats")
+        .popover({
+            offset: 10,
+            trigger: 'hover',
+            placement: 'bottom',
+            html : true,
+            content: function() {
+            return jQuery('#extrastats_popover').html();
+            }
         })
         .click(function(e) {
             e.preventDefault()
         })
     });
   </script>
+
+
+
+      <div id="extrastats_popover" style="display: none">
+        <table class="table table-condensed table-striped">
+          <tbody>
+            <tr>
+              <td>ID</td>
+              <td>#53575965498015744</td>
+            </tr>
+            <tr>
+              <td>Client</td>
+              <td>Echofon</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  <script type="text/javascript">
+        jQuery(function () {
+          jQuery('.countdown').countdown(
+            {until: '"<?php echo ozh_ta_next_update_in() ;?>"', format: 'hms', labels: ['Year', 'Month', 'Week', 'days', 'h ', 'm ', 's'], labels1: ['Year', 'Month', 'Week', 'day', 'h ', 'm ', 's']});
+        });
+  </script>
+  <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>js/jquery.countdown.js"></script>
+
 
 <?php wp_footer(); ?>
 
