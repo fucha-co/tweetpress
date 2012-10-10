@@ -13,12 +13,12 @@ get_header(); ?>
           <div class="hero-unit profile">
             <div class="heroIn">
             <div class="row-fluid">
-              <h1>@<?php bloginfo( 'name' ); ?> <?php global $current_blog; $blog_path = $current_blog->path; echo $blog_path; ?></h1>
+              <h1>@<?php bloginfo( 'name' ); ?></h1>
               <div class="span12">
                 <div class="row-fluid">
 
                   <div class="span3">
-                    <img src="http://avatars.io/twitter/<?php echo tp_NAME; ?>?size=large" alt="#" class="img-polaroid"/>
+                    <img src="http://avatars.io/twitter/<?php bloginfo( 'name' ); ?>?size=large" alt="#" class="img-polaroid"/>
                   </div>
 
                   <script src="<?php echo tp_TEMPURL ;?>/js/chirp.min.js"></script>

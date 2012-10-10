@@ -1,6 +1,6 @@
 <div class="span3">
           <div class="hero-unit sidenav">
-              <h2 class="taC">@TheLoneCuber</h2>
+              <h2 class="taC">@<?php bloginfo( 'name' ); ?></h2>
               <ul id="myTab" class="nav nav-tabs">
                 <li class="active">
                   <a href="#Archives" data-toggle="tab" rel="tooltip" title="Archives"><span class="glyph general">i</span></a>
