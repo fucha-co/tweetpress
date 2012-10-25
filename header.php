@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The Header for our theme
  *
@@ -10,6 +9,7 @@
  */
 ?>
 <!-- TweetPress header.php -->
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -39,18 +39,29 @@
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-<?php get_template_part ('part/head') ; ?>
+	<?php get_template_part ('part/head') ; ?>
 
-<?php wp_head(); ?>
+	<?php wp_head(); ?>
+
+
+
 </head>
-
+<?php flush(); // http://developer.yahoo.com/performance/rules.html#flush ?>
 <body <?php body_class(); ?>>
 
-	<?php get_template_part ('part/nav') ; ?>
 
-	<div class="container">
-	      <div class="row-fluid">
+	<?php if ( ! is_page('home') ) {?>
+	 <?php get_template_part ('part/nav') ; ?>
+	<?php }?>
 
-	      					<?php if ( ! is_front_page() || ! is_page('signup') ) {?>
-													 <?php get_template_part ('part/sidebar') ; ?>
-													<?php }?>
+		<div class="container">
+
+          <div class="row-fluid">
+
+      			<?php if ( is_page('home') ) {
+					// Returns true when 'about.php' is being used.
+					 get_template_part ("part/sidebar-home") ;
+					} else {
+						// Returns false when 'about.php' is not being used.
+					 get_template_part ("part/sidebar") ;
+				} ;?>

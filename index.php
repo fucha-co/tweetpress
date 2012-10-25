@@ -1,12 +1,6 @@
 <?php
 /**
- * The main template file.
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ * Homepage
  *
  * @package _s
  * @since _s 1.0
@@ -14,34 +8,71 @@
 
 get_header(); ?>
 
+        <div class="span9 content">
 
-			<?php if ( have_posts() ) : ?>
+          <div class="hero-unit profile">
+            <div class="heroIn">
+            <div class="row-fluid">
+              <h1>@<?php bloginfo( 'name' ); ?></h1>
+              <div class="span12">
+                <div class="row-fluid">
 
-				<?php _s_content_nav( 'nav-above' ); ?>
+                  <div class="span3">
+                    <img src="http://avatars.io/twitter/<?php bloginfo( 'name' ); ?>?size=large" alt="#" class="img-polaroid"/>
+                  </div>
 
-				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+                  <script>Chirp({
+                    user:'<?php bloginfo( 'name' ); ?>',
+                    max:1,
+                    templates: {
+                      base: '<div class="span9 chirp">{{tweets}}</div>',
+                      tweet: '<h2 class="">{{user.location}}</h2><p>{{user.description}}</p>'
+                    }
+                  })</script>
 
-					<?php
-						/* Include the Post-Format-specific template for the content.
-						 * If you want to overload this in a child theme then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						get_template_part( 'content', get_post_format() );
-					?>
+                  <div class="row-fluid">
+                    <div class="span12 statRow">
+                        <div class="span4"><i class="social foundicon-twitter"></i>
+                          <?php
+                            $published_posts = wp_count_posts();
+                            echo $published_posts->publish;
+                            ?> Tweets Memories
+                        </div>
+                        <?php
+                              $next = wp_next_scheduled( 'ozh_ta_cron_import' );
+                              $freq = $ozh_ta['refresh_interval'];
+                              $now = time();
+                              if( $next < $now )
+                                $next = $now + $freq - 1;
 
-				<?php endwhile; ?>
+                              echo '<div class="span4"><i class="general foundicon-lock"></i> Backed Up every '.ozh_ta_seconds_to_words( $freq ) .'</div>'; ?>
+                              <div class="span4"><i class="general foundicon-clock"></i> Next BU = <span class="countdown"></span></div>
+                    </div>
+                  </div>
 
-				<?php _s_content_nav( 'nav-below' ); ?>
+                </div>
 
-			<?php elseif ( current_user_can( 'edit_posts' ) ) : ?>
+              </div>
+              </div>
+            </div>
+          </div>
 
-				<?php get_template_part( 'no-results', 'index' ); ?>
 
-			<?php endif; ?>
+          <div id="tweets">
 
-						</div><!-- /row -->
-  </div> <!-- /container -->
+            <?php get_template_part ('part/title') ; ?>
 
+            <?php if ( is_home() ) {
+                // Returns true when 'about.php' is being used.
+                 get_template_part ('loop-random') ;
+                } else {
+                  // Returns false when 'about.php' is not being used.
+                 get_template_part ('loop') ; }
+            ;?>
+          </div>
+
+          <?php get_template_part ('part/page-nav') ; ?>
+
+        </div>
 
 <?php get_footer(); ?>
